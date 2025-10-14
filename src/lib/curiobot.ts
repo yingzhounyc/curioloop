@@ -295,7 +295,7 @@ Example: "Tomorrow for 5 days"`,
   async generatePhaseTransitionMessage(
     fromPhase: CurioLoopPhase,
     toPhase: CurioLoopPhase,
-    context: string = ''
+    _context: string = ''
   ): Promise<string> {
     const transitions = {
       'observe→hypothesize': "Great! Now let's turn that curiosity into a testable experiment. What do you think might happen if you explored this further?",

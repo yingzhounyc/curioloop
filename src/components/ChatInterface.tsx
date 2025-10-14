@@ -8,10 +8,9 @@ import { Bot, Send, Loader2, Plus, List, Play } from 'lucide-react';
 
 interface ChatInterfaceProps {
   userId?: string;
-  experimentId?: string;
 }
 
-export function ChatInterface({ userId, experimentId }: ChatInterfaceProps) {
+export function ChatInterface({ userId }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -61,7 +60,7 @@ export function ChatInterface({ userId, experimentId }: ChatInterfaceProps) {
         // Convert timestamp strings back to Date objects
         const experimentsWithDates = parsedExperiments.map(exp => ({
           ...exp,
-          messages: exp.messages.map((msg: any) => ({
+          messages: exp.messages.map((msg: ChatMessage & { timestamp: string }) => ({
             ...msg,
             timestamp: new Date(msg.timestamp)
           }))
@@ -194,12 +193,6 @@ export function ChatInterface({ userId, experimentId }: ChatInterfaceProps) {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
-  };
 
   const getPhaseDescription = (phase: CurioLoopPhase) => {
     const descriptions = {
@@ -217,7 +210,6 @@ export function ChatInterface({ userId, experimentId }: ChatInterfaceProps) {
     const experimentTitle = getExperimentTitle(messages);
     const curiosity = getExperimentCuriosity(messages);
     const hypothesis = getExperimentHypothesis(messages);
-    const commitment = getExperimentCommitment(messages);
 
     const experiment: SavedExperiment = {
       id: experimentId,

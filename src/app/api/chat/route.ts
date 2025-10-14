@@ -6,7 +6,7 @@ const curioBot = new CurioBot();
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { message, phase, userId, experimentId, conversationHistory } = body;
+    const { message, phase, conversationHistory } = body;
 
     if (!message || !phase) {
       return NextResponse.json(

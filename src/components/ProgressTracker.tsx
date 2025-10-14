@@ -1,7 +1,7 @@
 'use client';
 
 import { ExperimentProgress } from '@/types';
-import { CheckCircle, Circle, Flame } from 'lucide-react';
+import { CheckCircle, Flame } from 'lucide-react';
 
 interface ProgressTrackerProps {
   progress: ExperimentProgress;
