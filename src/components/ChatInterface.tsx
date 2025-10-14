@@ -34,7 +34,7 @@ export function ChatInterface({ userId }: ChatInterfaceProps) {
   const [showExperimentList, setShowExperimentList] = useState(false);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
