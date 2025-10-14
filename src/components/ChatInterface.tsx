@@ -62,6 +62,7 @@ export function ChatInterface({ userId }: ChatInterfaceProps) {
           ...exp,
           messages: exp.messages.map((msg: ChatMessage) => ({
             ...msg,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             timestamp: new Date((msg as any).timestamp)
           }))
         }));
