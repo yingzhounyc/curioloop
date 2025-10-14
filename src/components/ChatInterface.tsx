@@ -60,7 +60,7 @@ export function ChatInterface({ userId }: ChatInterfaceProps) {
         // Convert timestamp strings back to Date objects
         const experimentsWithDates = parsedExperiments.map(exp => ({
           ...exp,
-          messages: exp.messages.map((msg: ChatMessage & { timestamp: string }) => ({
+          messages: exp.messages.map((msg: any) => ({
             ...msg,
             timestamp: new Date(msg.timestamp)
           }))
@@ -247,10 +247,6 @@ export function ChatInterface({ userId }: ChatInterfaceProps) {
     return hypothesisMessage ? hypothesisMessage.content : '';
   };
 
-  const getExperimentCommitment = (messages: ChatMessage[]): string => {
-    const commitmentMessage = messages.find(msg => msg.sender === 'user' && msg.phase === 'commit');
-    return commitmentMessage ? commitmentMessage.content : '';
-  };
 
   const closeCurrentExperiment = () => {
     if (currentExperimentId) {
