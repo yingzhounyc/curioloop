@@ -60,9 +60,9 @@ export function ChatInterface({ userId }: ChatInterfaceProps) {
         // Convert timestamp strings back to Date objects
         const experimentsWithDates = parsedExperiments.map(exp => ({
           ...exp,
-          messages: exp.messages.map((msg: { timestamp: string } & Omit<ChatMessage, 'timestamp'>) => ({
+          messages: exp.messages.map((msg: ChatMessage) => ({
             ...msg,
-            timestamp: new Date(msg.timestamp)
+            timestamp: new Date((msg as any).timestamp)
           }))
         }));
         setSavedExperiments(experimentsWithDates);
